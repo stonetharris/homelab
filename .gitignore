@@ -1,0 +1,9 @@
+.env
+*.env
+secrets/
+*.key
+*.pem
+*.crt
+*.sqlite
+*.db
+.DS_Store
