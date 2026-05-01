@@ -1,0 +1,19 @@
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    ports:
+      - "10.0.0.7:53:53/tcp"
+      - "10.0.0.7:53:53/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    environment:
+      TZ: ${TZ}
+      FTLCONF_dns_listeningMode: "ALL"
+      FTLCONF_dns_upstreams: "1.1.1.1;1.0.0.1"
+    volumes:
+      - /srv/docker/pihole/etc-pihole:/etc/pihole
+    restart: unless-stopped
