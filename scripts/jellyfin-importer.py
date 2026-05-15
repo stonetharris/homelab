@@ -254,9 +254,19 @@ def import_tv_file(path: Path, dry_run: bool) -> Optional[ImportResult]:
     return result
 
 
+def folder_contains_tv_episodes(source_dir: Path) -> bool:
+    for p in source_dir.rglob("*"):
+        if is_video(p) and re.search(r"S\d{1,2}E\d{1,2}", p.name, re.IGNORECASE):
+            return True
+    return False
+
+
 def import_tv_dir(source_dir: Path, dry_run: bool) -> list[ImportResult]:
     if already_imported(source_dir):
         log(f"Skipping already imported TV folder: {source_dir}")
+        return []
+    if folder_contains_tv_episodes(source_dir):
+        log(f"Skipping movie pass because folder contains TV episodes: {source_dir}")
         return []
 
     videos = [p for p in source_dir.rglob("*") if is_video(p) and not is_probably_junk_video(p)]
