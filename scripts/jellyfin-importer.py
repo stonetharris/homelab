@@ -12,8 +12,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-DOWNLOAD_MOVIES = Path("/srv/downloads/complete/movies")
-DOWNLOAD_TV = Path("/srv/downloads/complete/tv")
+DOWNLOAD_MOVIES = Path("/srv/downloads/complete")
+DOWNLOAD_TV = Path("/srv/downloads/complete")
 MEDIA_MOVIES = Path("/srv/media/movies")
 MEDIA_TV = Path("/srv/media/tv")
 LOG_FILE = Path("/home/stone/homelab/logs/jellyfin-importer.log")
